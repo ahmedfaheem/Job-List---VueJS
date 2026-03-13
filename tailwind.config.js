@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{vue, js, ts,jsx,tsx}'], // watch edits to compile by vite
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'], // watch edits to compile by vite
   theme: {
     extend: {
       fontFamily:{

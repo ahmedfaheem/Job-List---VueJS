@@ -9,7 +9,7 @@ A job board web app built with Vue 3, Vue Router, Tailwind CSS, and a local `jso
 - Add a new job
 - Edit existing jobs
 - Delete jobs
-- Toast notifications for user feedback
+- Toast notifications for user feedback 
 
 ## Tech Stack
 
@@ -19,6 +19,17 @@ A job board web app built with Vue 3, Vue Router, Tailwind CSS, and a local `jso
 - Tailwind CSS
 - json-server
 - vue-toastification
+
+## External Libraries
+
+- `primeicons`: Icon set used across components (for example map marker, back arrow, warning icon).
+- `vue-toastification`: Toast notifications for success/error feedback.
+- `vue-spinner`: Loading spinner components for async loading states.
+- `json-server`: Local mock REST API for jobs data in development.
+
+Notes:
+- PrimeIcons CSS is loaded in `src/main.js` via `import 'primeicons/primeicons.css'`.
+- Toastification is registered globally in `src/main.js` via `.use(Toast)`.
 
 ## Setup
 
@@ -31,6 +42,7 @@ npm install
 1. Start API server:
 
 ```bash
+npm install json-server
 npm run server
 ```
 
@@ -115,53 +127,6 @@ Get one job:
 curl http://localhost:8000/jobs/1
 ```
 
-Create job:
-
-```bash
-curl -X POST http://localhost:8000/jobs \
-	-H "Content-Type: application/json" \
-	-d '{
-		"title": "Junior Vue Developer",
-		"type": "Full-Time",
-		"description": "Build and maintain Vue features.",
-		"location": "Remote",
-		"salary": "$50K - $60K",
-		"company": {
-			"name": "Acme Labs",
-			"description": "Product-focused software company.",
-			"contactEmail": "jobs@acme.dev",
-			"contactPhone": "555-222-1000"
-		}
-	}'
-```
-
-Update job:
-
-```bash
-curl -X PUT http://localhost:8000/jobs/1 \
-	-H "Content-Type: application/json" \
-	-d '{
-		"id": "1",
-		"title": "Senior Vue Developer",
-		"type": "Full-Time",
-		"description": "Updated description",
-		"location": "Boston, MA",
-		"salary": "$80K - $90K",
-		"company": {
-			"name": "NewTek Solutions",
-			"description": "Updated company description",
-			"contactEmail": "contact@teksolutions.com",
-			"contactPhone": "555-555-5555"
-		}
-	}'
-```
-
-Delete job:
-
-```bash
-curl -X DELETE http://localhost:8000/jobs/1
-```
-
 ## NPM Scripts
 
 - `npm run dev`: Start Vite development server
@@ -175,20 +140,7 @@ curl -X DELETE http://localhost:8000/jobs/1
 - If API calls fail, make sure json-server is running on `http://localhost:8000`.
 - If styles look broken, restart `npm run dev` after changing Tailwind config.
 
-## Screenshots
+## Policy
 
-### Home Page
+- This project is for learning and portfolio use.
 
-![Home Page](docs/screenshots/home-page.png)
-
-### Jobs Page
-
-![Jobs Page](docs/screenshots/jobs-page.png)
-
-### Add Job Page
-
-![Add Job Page](docs/screenshots/add-job-page.png)
-
-### Edit Job Page
-
-![Edit Job Page](docs/screenshots/edit-job-page.png)

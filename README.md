@@ -46,6 +46,135 @@ npm run dev
 npm run build
 ```
 
+## App Routes
+
+- `/` Home page
+- `/jobs` Jobs listing page
+- `/job/:id` Job details page
+- `/jobs/add` Add new job page
+- `/jobs/edit/:id` Edit existing job page
+- `/:pathMatch(.*)*` Not found page
+
+## Data Source (json-server)
+
+The app uses a local mock REST API powered by `json-server`.
+
+- Data file: `src/jobs.json`
+- API base URL: `http://localhost:8000`
+- Resource: `/jobs`
+- Start command: `npm run server`
+
+### Current Database Shape
+
+```json
+{
+	"jobs": [
+		{
+			"id": "1",
+			"title": "Senior Vue Developer",
+			"type": "Full-Time",
+			"description": "...",
+			"location": "Boston, MA",
+			"salary": "$70K - $80K",
+			"company": {
+				"name": "NewTek Solutions",
+				"description": "...",
+				"contactEmail": "contact@teksolutions.com",
+				"contactPhone": "555-555-5555"
+			}
+		}
+	]
+}
+```
+
+### Seed Data Included
+
+- Initial jobs count: `6`
+- IDs are currently strings in `src/jobs.json` (`"1"`, `"2"`, ...)
+
+### API Endpoints
+
+- `GET /jobs` Get all jobs
+- `GET /jobs/:id` Get one job by id
+- `POST /jobs` Create a job
+- `PUT /jobs/:id` Replace a job
+- `PATCH /jobs/:id` Update part of a job
+- `DELETE /jobs/:id` Delete a job
+
+### API Examples
+
+Get all jobs:
+
+```bash
+curl http://localhost:8000/jobs
+```
+
+Get one job:
+
+```bash
+curl http://localhost:8000/jobs/1
+```
+
+Create job:
+
+```bash
+curl -X POST http://localhost:8000/jobs \
+	-H "Content-Type: application/json" \
+	-d '{
+		"title": "Junior Vue Developer",
+		"type": "Full-Time",
+		"description": "Build and maintain Vue features.",
+		"location": "Remote",
+		"salary": "$50K - $60K",
+		"company": {
+			"name": "Acme Labs",
+			"description": "Product-focused software company.",
+			"contactEmail": "jobs@acme.dev",
+			"contactPhone": "555-222-1000"
+		}
+	}'
+```
+
+Update job:
+
+```bash
+curl -X PUT http://localhost:8000/jobs/1 \
+	-H "Content-Type: application/json" \
+	-d '{
+		"id": "1",
+		"title": "Senior Vue Developer",
+		"type": "Full-Time",
+		"description": "Updated description",
+		"location": "Boston, MA",
+		"salary": "$80K - $90K",
+		"company": {
+			"name": "NewTek Solutions",
+			"description": "Updated company description",
+			"contactEmail": "contact@teksolutions.com",
+			"contactPhone": "555-555-5555"
+		}
+	}'
+```
+
+Delete job:
+
+```bash
+curl -X DELETE http://localhost:8000/jobs/1
+```
+
+## NPM Scripts
+
+- `npm run dev`: Start Vite development server
+- `npm run build`: Build production bundle
+- `npm run preview`: Preview production build locally
+- `npm run server`: Start json-server on port `8000`
+
+## Troubleshooting
+
+- If `npm run server` fails, verify `src/jobs.json` exists and is valid JSON.
+- If API calls fail, make sure json-server is running on `http://localhost:8000`.
+- If styles look broken, restart `npm run dev` after changing Tailwind config.
+
 ## Screenshots
 
 ### Home Page
